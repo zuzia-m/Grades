@@ -140,7 +140,7 @@ namespace GradesApp
                     throw new ArgumentException($"Invalid argument: {nameof(grade)}. Only grades from 1 to 6 are allowed!");
             }
         }
-        public void ShowGrades()
+        public override void ShowGrades()
         {
             StringBuilder sb = new StringBuilder($"{this.FirstName} {this.LastName} grades are: ");
             for (int i = 0; i < grades.Count; i++)
@@ -150,7 +150,7 @@ namespace GradesApp
                 else
                     sb.Append($"{grades[i]:N2}; ");
             }
-            Console.WriteLine(sb);
+            Console.WriteLine($"\n{sb}");
         }
         public override Statistics GetStatistics()
         {

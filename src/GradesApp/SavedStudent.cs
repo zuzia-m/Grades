@@ -123,6 +123,21 @@ namespace GradesApp
                     throw new ArgumentException($"Invalid argument: {nameof(grade)}. Only grades from 1 to 6 are allowed!");
             }
         }
+        public override void ShowGrades()
+        {
+            StringBuilder sb = new StringBuilder($"{this.FirstName} {this.LastName} grades are: ");
+
+            using (var reader = File.OpenText($"{FirstName}_{LastName}{fileName}"))
+            {
+                var line = reader.ReadLine();
+                while (line != null)
+                {
+                    sb.Append($"{line}; ");
+                    line = reader.ReadLine();
+                }
+            }
+            Console.WriteLine($"\n{sb}");
+        }
         public override Statistics GetStatistics()
         {
             var result = new Statistics();

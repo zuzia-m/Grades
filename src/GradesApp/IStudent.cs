@@ -12,6 +12,7 @@ public interface IStudent
         string FirstName { get; set; }
         string LastName { get; set; }
         Statistics GetStatistics();
+        void ShowGrades();
         void ShowStatistics();
     }
 }

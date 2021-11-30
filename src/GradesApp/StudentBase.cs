@@ -19,9 +19,10 @@ namespace GradesApp
         public abstract void AddGrade(double grade);
         public abstract void AddGrade(string grade);
         public abstract Statistics GetStatistics();
+        public abstract void ShowGrades();
         public void ShowStatistics()
         {
-            Console.WriteLine();
+            ShowGrades();
             Console.WriteLine($"{FirstName} {LastName} statistics:");
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine($"Total grades: {GetStatistics().Count}");

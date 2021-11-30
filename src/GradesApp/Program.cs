@@ -43,6 +43,7 @@ namespace GradesApp
                         break;
                     case "2":
                         string firstName2, lastName2;
+
                         InsertFirstNameAndLastName(out firstName2, out lastName2);
                         if (!string.IsNullOrEmpty(firstName2) && !string.IsNullOrEmpty(firstName2))
                         {
