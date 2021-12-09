@@ -8,6 +8,7 @@ namespace GradesApp
         public double Low;
         public double Sum;
         public int Count;
+
         public Statistics()
         {
             Count = 0;
@@ -15,6 +16,7 @@ namespace GradesApp
             High = double.MinValue;
             Low = double.MaxValue;
         }
+
         public double Average
         {
             get
@@ -22,6 +24,7 @@ namespace GradesApp
                 return Sum / Count;
             }
         }
+
         public void Add(double number)
         {
             Sum += number;

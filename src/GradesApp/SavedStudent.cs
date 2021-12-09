@@ -7,7 +7,11 @@ namespace GradesApp
 {
     public class SavedStudent : StudentBase
     {
+        const string fileName = "_grades.txt";
+
         private string firstName;
+        private string lastName;
+
         public override string FirstName
         {
             get
@@ -22,7 +26,7 @@ namespace GradesApp
                 }
             }
         }
-        private string lastName;
+
         public override string LastName
         {
             get
@@ -37,11 +41,10 @@ namespace GradesApp
                 }
             }
         }
+
         public SavedStudent(string firstName, string lastName) : base(firstName, lastName)
         {
         }
-
-        const string fileName = "_grades.txt";
 
         public override void AddGrade(double grade)
         {
@@ -59,52 +62,40 @@ namespace GradesApp
                 }
             }
             else
+            {
                 throw new ArgumentException($"Invalid argument: {nameof(grade)}. Only grades from 1 to 6 are allowed!");
+            }
         }
+
         public override void AddGrade(string grade)
         {
-            if (grade.Contains('+') || grade.Contains('-'))
+            double convertedGradeToDouble = char.GetNumericValue(grade[0]);
+            if (grade.Length == 2 && char.IsDigit(grade[0]) && grade[0] <= '6' && (grade[1] == '+' || grade[1] == '-'))
             {
-                switch (grade)
+                switch (grade[1])
                 {
-                    case "1+":
-                        AddGrade(1.5);
+                    case '+':
+                        double gradePlus = convertedGradeToDouble + 0.50;
+                        if (gradePlus > 1 && gradePlus <= 6)
+                        {
+                            AddGrade(gradePlus);
+                        }
+                        else
+                        {
+                            throw new ArgumentException($"Invalid argument: {nameof(grade)}. Only grades from 1 to 6 are allowed!");
+                        }
                         break;
 
-                    case "2-":
-                        AddGrade(1.75);
-                        break;
-
-                    case "2+":
-                        AddGrade(2.5);
-                        break;
-
-                    case "3-":
-                        AddGrade(2.75);
-                        break;
-
-                    case "3+":
-                        AddGrade(3.5);
-                        break;
-
-                    case "4-":
-                        AddGrade(3.75);
-                        break;
-
-                    case "4+":
-                        AddGrade(4.5);
-                        break;
-
-                    case "5-":
-                        AddGrade(4.75);
-                        break;
-
-                    case "5+":
-                        AddGrade(5.5);
-                        break;
-
-                    case "6-":
-                        AddGrade(5.5);
+                    case '-':
+                        double gradeMinus = convertedGradeToDouble - 0.250;
+                        if (gradeMinus > 1 && gradeMinus <= 6)
+                        {
+                            AddGrade(gradeMinus);
+                        }
+                        else
+                        {
+                            throw new ArgumentException($"Invalid argument: {nameof(grade)}. Only grades from 1 to 6 are allowed!");
+                        }
                         break;
 
                     default:
@@ -120,9 +111,12 @@ namespace GradesApp
                     AddGrade(gradeDouble);
                 }
                 else
+                {
                     throw new ArgumentException($"Invalid argument: {nameof(grade)}. Only grades from 1 to 6 are allowed!");
+                }
             }
         }
+
         public override void ShowGrades()
         {
             StringBuilder sb = new StringBuilder($"{this.FirstName} {this.LastName} grades are: ");
@@ -138,18 +132,21 @@ namespace GradesApp
             }
             Console.WriteLine($"\n{sb}");
         }
+
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
-
-            using (var reader = File.OpenText($"{FirstName}_{LastName}{fileName}"))
+            if (File.Exists($"{FirstName}_{LastName}{fileName}"))
             {
-                var line = reader.ReadLine();
-                while (line != null)
+                using (var reader = File.OpenText($"{FirstName}_{LastName}{fileName}"))
                 {
-                    var number = double.Parse(line);
-                    result.Add(number);
-                    line = reader.ReadLine();
+                    var line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        var number = double.Parse(line);
+                        result.Add(number);
+                        line = reader.ReadLine();
+                    }
                 }
             }
             return result;

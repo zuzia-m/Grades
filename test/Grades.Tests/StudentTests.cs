@@ -9,7 +9,7 @@ namespace Grades.Tests
         [Fact]
         public void Test1()
         {
-             // arrange
+            // arrange
             var student = new InMemoryStudent("Zuzia", "Macińska");
             student.AddGrade(5.0);
             student.AddGrade(6.0);

@@ -30,6 +30,7 @@ namespace GradesApp
                 {
                     case "1":
                         string firstName, lastName;
+
                         InsertFirstNameAndLastName(out firstName, out lastName);
                         if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(firstName))
                         {
@@ -39,8 +40,11 @@ namespace GradesApp
                             student.ShowStatistics();
                         }
                         else
+                        {
                             WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
+                        }
                         break;
+
                     case "2":
                         string firstName2, lastName2;
 
@@ -53,30 +57,25 @@ namespace GradesApp
                             student2.ShowStatistics();
                         }
                         else
+                        {
                             WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
+                        }
                         break;
+
                     case "X":
                         CloseApp = true;
                         break;
+
                     default:
                         WritelineColor(ConsoleColor.Red, "Invalid operation.\n");
                         continue;
                 }
             }
-
             WritelineColor(ConsoleColor.DarkYellow, "\n\nBye Bye! Press any key to leave.");
             Console.ReadKey();
         }
 
-        private static void InsertFirstNameAndLastName(out string firstName, out string lastName)
-        {
-            WritelineColor(ConsoleColor.Yellow, "Please insert student's first name: ");
-            firstName = Console.ReadLine();
-            WritelineColor(ConsoleColor.Yellow, "Please insert students last name: ");
-            lastName = Console.ReadLine();
-        }
-
-        static void EnterGrade(IStudent student)
+        private static void EnterGrade(IStudent student)
         {
             while (true)
             {
@@ -84,7 +83,9 @@ namespace GradesApp
                 var input = Console.ReadLine();
 
                 if (input == "q" || input == "Q")
+                {
                     break;
+                }
                 try
                 {
                     student.AddGrade(input);
@@ -107,11 +108,20 @@ namespace GradesApp
                 }
             }
         }
-        static void WritelineColor(ConsoleColor color, string text)
+
+        private static void WritelineColor(ConsoleColor color, string text)
         {
             Console.ForegroundColor = color;
             Console.WriteLine(text);
             Console.ResetColor();
+        }
+
+        private static void InsertFirstNameAndLastName(out string firstName, out string lastName)
+        {
+            WritelineColor(ConsoleColor.Yellow, "Please insert student's first name: ");
+            firstName = Console.ReadLine();
+            WritelineColor(ConsoleColor.Yellow, "Please insert students last name: ");
+            lastName = Console.ReadLine();
         }
     }
 }
