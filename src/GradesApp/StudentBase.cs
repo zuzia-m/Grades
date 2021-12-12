@@ -16,7 +16,7 @@ namespace GradesApp
         {
         }
 
-        public virtual event GradeAddedUnder3Delegade GradeUnder3;
+        public event GradeAddedUnder3Delegade GradeUnder3;
 
         public abstract void AddGrade(double grade);
         public abstract void AddGrade(string grade);

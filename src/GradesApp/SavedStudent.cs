@@ -11,6 +11,7 @@ namespace GradesApp
 
         private string firstName;
         private string lastName;
+        private string fullFileName;
 
         public override string FirstName
         {
@@ -44,13 +45,14 @@ namespace GradesApp
 
         public SavedStudent(string firstName, string lastName) : base(firstName, lastName)
         {
+            fullFileName = $"{firstName}_{lastName}{fileName}";
         }
 
         public override void AddGrade(double grade)
         {
             if (grade > 0 && grade <= 6)
             {
-                using (var writer = File.AppendText($"{FirstName}_{LastName}{fileName}"))
+                using (var writer = File.AppendText($"{fullFileName}"))
                 using (var writer2 = File.AppendText($"audit.txt"))
                 {
                     writer.WriteLine(grade);
@@ -121,7 +123,7 @@ namespace GradesApp
         {
             StringBuilder sb = new StringBuilder($"{this.FirstName} {this.LastName} grades are: ");
 
-            using (var reader = File.OpenText($"{FirstName}_{LastName}{fileName}"))
+            using (var reader = File.OpenText(($"{fullFileName}")))
             {
                 var line = reader.ReadLine();
                 while (line != null)
@@ -136,9 +138,9 @@ namespace GradesApp
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
-            if (File.Exists($"{FirstName}_{LastName}{fileName}"))
+            if (File.Exists($"{fullFileName}"))
             {
-                using (var reader = File.OpenText($"{FirstName}_{LastName}{fileName}"))
+                using (var reader = File.OpenText($"{fullFileName}"))
                 {
                     var line = reader.ReadLine();
                     while (line != null)

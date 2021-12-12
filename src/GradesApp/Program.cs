@@ -29,37 +29,12 @@ namespace GradesApp
                 switch (userInput)
                 {
                     case "1":
-                        string firstName, lastName;
-
-                        InsertFirstNameAndLastName(out firstName, out lastName);
-                        if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(firstName))
-                        {
-                            var student = new InMemoryStudent(firstName, lastName);
-                            student.GradeUnder3 += OnGradeUnder3;
-                            EnterGrade(student);
-                            student.ShowStatistics();
-                        }
-                        else
-                        {
-                            WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
-                        }
+                        AddGradesToMemory();
                         break;
 
                     case "2":
-                        string firstName2, lastName2;
 
-                        InsertFirstNameAndLastName(out firstName2, out lastName2);
-                        if (!string.IsNullOrEmpty(firstName2) && !string.IsNullOrEmpty(firstName2))
-                        {
-                            var student2 = new SavedStudent(firstName2, lastName2);
-                            student2.GradeUnder3 += OnGradeUnder3;
-                            EnterGrade(student2);
-                            student2.ShowStatistics();
-                        }
-                        else
-                        {
-                            WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
-                        }
+                        AddGradesToTxtFile();
                         break;
 
                     case "X":
@@ -74,6 +49,40 @@ namespace GradesApp
             WritelineColor(ConsoleColor.DarkYellow, "\n\nBye Bye! Press any key to leave.");
             Console.ReadKey();
         }
+        private static void AddGradesToMemory()
+        {
+            string firstName = GetValueFromUser("Please insert student's first name: ");
+            string lastName = GetValueFromUser("Please insert student's last name: ");
+            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(firstName))
+            {
+                var student = new InMemoryStudent(firstName, lastName);
+                student.GradeUnder3 += OnGradeUnder3;
+                EnterGrade(student);
+                student.ShowStatistics();
+            }
+            else
+            {
+                WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
+            }
+        }
+
+        private static void AddGradesToTxtFile()
+        {
+            string firstName = GetValueFromUser("Please insert student's first name: ");
+            string lastName = GetValueFromUser("Please insert student's last name: ");
+            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(firstName))
+            {
+                var student2 = new SavedStudent(firstName, lastName);
+                student2.GradeUnder3 += OnGradeUnder3;
+                EnterGrade(student2);
+                student2.ShowStatistics();
+            }
+            else
+            {
+                WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
+            }
+        }
+
 
         private static void EnterGrade(IStudent student)
         {
@@ -116,12 +125,11 @@ namespace GradesApp
             Console.ResetColor();
         }
 
-        private static void InsertFirstNameAndLastName(out string firstName, out string lastName)
+        private static string GetValueFromUser(string comment)
         {
-            WritelineColor(ConsoleColor.Yellow, "Please insert student's first name: ");
-            firstName = Console.ReadLine();
-            WritelineColor(ConsoleColor.Yellow, "Please insert students last name: ");
-            lastName = Console.ReadLine();
+            WritelineColor(ConsoleColor.Yellow, comment);
+            string userInput = Console.ReadLine();
+            return userInput;
         }
     }
 }
