@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -7,7 +6,7 @@ namespace GradesApp
 {
     public class SavedStudent : StudentBase
     {
-        const string fileName = "_grades.txt";
+        private const string fileName = "_grades.txt";
 
         private string firstName;
         private string lastName;

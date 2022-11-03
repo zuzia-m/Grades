@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GradesApp
 {
-
     public delegate void GradeAddedUnder3Delegade(object sender, EventArgs args);
 
     public abstract class StudentBase : Person, IStudent
@@ -19,8 +16,11 @@ namespace GradesApp
         public event GradeAddedUnder3Delegade GradeUnder3;
 
         public abstract void AddGrade(double grade);
+
         public abstract void AddGrade(string grade);
+
         public abstract void ShowGrades();
+
         public abstract Statistics GetStatistics();
 
         public void ShowStatistics()

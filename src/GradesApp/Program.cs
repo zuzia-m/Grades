@@ -2,14 +2,9 @@
 
 namespace GradesApp
 {
-    class Program
+    internal class Program
     {
-        static void OnGradeUnder3(object sender, EventArgs args)
-        {
-            WritelineColor(ConsoleColor.DarkYellow, $"Oh no! Student got grade under 3. We should inform student’s parents about this fact!");
-        }
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             WritelineColor(ConsoleColor.Magenta, "Hello to the [Student's Grades Book] console app.");
 
@@ -33,7 +28,6 @@ namespace GradesApp
                         break;
 
                     case "2":
-
                         AddGradesToTxtFile();
                         break;
 
@@ -49,6 +43,12 @@ namespace GradesApp
             WritelineColor(ConsoleColor.DarkYellow, "\n\nBye Bye! Press any key to leave.");
             Console.ReadKey();
         }
+
+        static void OnGradeUnder3(object sender, EventArgs args)
+        {
+            WritelineColor(ConsoleColor.DarkYellow, $"Oh no! Student got grade under 3. We should inform student’s parents about this fact!");
+        }
+
         private static void AddGradesToMemory()
         {
             string firstName = GetValueFromUser("Please insert student's first name: ");
@@ -82,7 +82,6 @@ namespace GradesApp
                 WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
             }
         }
-
 
         private static void EnterGrade(IStudent student)
         {
@@ -133,5 +132,3 @@ namespace GradesApp
         }
     }
 }
-
-

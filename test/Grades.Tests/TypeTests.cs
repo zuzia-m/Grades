@@ -9,8 +9,8 @@ namespace Grades.Tests
         [Fact]
         public void GetStudentReturnsDifferentObjects()
         {
-            var student1 = GetStudent("Zuzia", "Macińska");
-            var student2 = GetStudent("Patryk", "Maciński");
+            var student1 = GetStudent("Robert", "Lewandowski");
+            var student2 = GetStudent("Lionel", "Messi");
 
             Assert.NotSame(student1, student2);
             Assert.False(Object.ReferenceEquals(student1, student2));
@@ -19,7 +19,7 @@ namespace Grades.Tests
         [Fact]
         public void TwoVarsCanReferenceSameObject()
         {
-            var student1 = GetStudent("Zuzia", "Macińska");
+            var student1 = GetStudent("Robert", "Lewandowski");
             var student2 = student1;
 
             Assert.Same(student1, student2);
