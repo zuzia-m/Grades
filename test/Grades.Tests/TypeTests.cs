@@ -13,6 +13,7 @@ namespace Grades.Tests
             var student2 = GetStudent("Lionel", "Messi");
 
             Assert.NotSame(student1, student2);
+            Assert.False(student1.Equals(student2));
             Assert.False(Object.ReferenceEquals(student1, student2));
         }
 
@@ -24,6 +25,7 @@ namespace Grades.Tests
 
             Assert.Same(student1, student2);
             Assert.True(student1.Equals(student2));
+            Assert.True(Object.ReferenceEquals(student1, student2));
         }
 
         private InMemoryStudent GetStudent(string firstName, string secondName)

@@ -53,7 +53,7 @@ namespace GradesApp
         {
             string firstName = GetValueFromUser("Please insert student's first name: ");
             string lastName = GetValueFromUser("Please insert student's last name: ");
-            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(firstName))
+            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
             {
                 var student = new InMemoryStudent(firstName, lastName);
                 student.GradeUnder3 += OnGradeUnder3;
@@ -70,7 +70,7 @@ namespace GradesApp
         {
             string firstName = GetValueFromUser("Please insert student's first name: ");
             string lastName = GetValueFromUser("Please insert student's last name: ");
-            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(firstName))
+            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
             {
                 var student2 = new SavedStudent(firstName, lastName);
                 student2.GradeUnder3 += OnGradeUnder3;
