@@ -25,18 +25,19 @@ namespace GradesApp
 
         public void ShowStatistics()
         {
-            if (GetStatistics().Count != 0)
+            var stat = GetStatistics();
+            if (stat.Count != 0)
             {
                 ShowGrades();
                 Console.WriteLine($"{FirstName} {LastName} statistics:");
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine($"Total grades: {GetStatistics().Count}");
+                Console.WriteLine($"Total grades: {stat.Count}");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Highest grade: {GetStatistics().High:N2}");
+                Console.WriteLine($"Highest grade: {stat.High:N2}");
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Lowest grade: {GetStatistics().Low:N2}");
+                Console.WriteLine($"Lowest grade: {stat.Low:N2}");
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"Average: {GetStatistics().Average:N2}");
+                Console.WriteLine($"Average: {stat.Average:N2}");
                 Console.WriteLine();
                 Console.ResetColor();
             }
