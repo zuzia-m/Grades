@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GradesApp
 {
-    public class SavedStudent : StudentBase
+    public class StudentSaved : StudentBase
     {
         private const string fileName = "_grades.txt";
 
@@ -42,7 +42,7 @@ namespace GradesApp
             }
         }
 
-        public SavedStudent(string firstName, string lastName) : base(firstName, lastName)
+        public StudentSaved(string firstName, string lastName) : base(firstName, lastName)
         {
             fullFileName = $"{firstName}_{lastName}{fileName}";
         }

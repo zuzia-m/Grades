@@ -55,7 +55,7 @@ namespace GradesApp
             string lastName = GetValueFromUser("Please insert student's last name: ");
             if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
             {
-                var inMemoryStudent = new InMemoryStudent(firstName, lastName);
+                var inMemoryStudent = new StudentInMemory(firstName, lastName);
                 inMemoryStudent.GradeUnder3 += OnGradeUnder3;
                 EnterGrade(inMemoryStudent);
                 inMemoryStudent.ShowStatistics();
@@ -72,7 +72,7 @@ namespace GradesApp
             string lastName = GetValueFromUser("Please insert student's last name: ");
             if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
             {
-                var savedStudent = new SavedStudent(firstName, lastName);
+                var savedStudent = new StudentSaved(firstName, lastName);
                 savedStudent.GradeUnder3 += OnGradeUnder3;
                 EnterGrade(savedStudent);
                 savedStudent.ShowStatistics();

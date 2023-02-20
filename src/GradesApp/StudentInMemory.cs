@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GradesApp
 {
-    public class InMemoryStudent : StudentBase
+    public class StudentInMemory : StudentBase
     {
         private List<double> grades;
         private string firstName;
@@ -40,7 +40,7 @@ namespace GradesApp
             }
         }
 
-        public InMemoryStudent(string firstName, string lastName) : base(firstName, lastName)
+        public StudentInMemory(string firstName, string lastName) : base(firstName, lastName)
         {
             grades = new List<double>();
         }

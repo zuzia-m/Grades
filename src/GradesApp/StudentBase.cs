@@ -2,10 +2,10 @@ using System;
 
 namespace GradesApp
 {
-    public delegate void GradeAddedUnder3Delegade(object sender, EventArgs args);
-
     public abstract class StudentBase : Person, IStudent
     {
+        public delegate void GradeAddedUnder3Delegade(object sender, EventArgs args);
+        public event GradeAddedUnder3Delegade GradeUnder3;
         public override string FirstName { get; set; }
         public override string LastName { get; set; }
 
@@ -13,7 +13,6 @@ namespace GradesApp
         {
         }
 
-        public event GradeAddedUnder3Delegade GradeUnder3;
 
         public abstract void AddGrade(double grade);
 

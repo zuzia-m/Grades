@@ -10,7 +10,7 @@ namespace Grades.Tests
         public void Test1()
         {
             // arrange
-            var student = new InMemoryStudent("Lionel", "Messi");
+            var student = new StudentInMemory("Lionel", "Messi");
             student.AddGrade(5.0);
             student.AddGrade(6.0);
             student.AddGrade(4.5);

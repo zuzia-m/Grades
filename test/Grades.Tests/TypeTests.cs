@@ -28,9 +28,9 @@ namespace Grades.Tests
             Assert.True(Object.ReferenceEquals(student1, student2));
         }
 
-        private InMemoryStudent GetStudent(string firstName, string secondName)
+        private StudentInMemory GetStudent(string firstName, string secondName)
         {
-            return new InMemoryStudent(firstName, secondName);
+            return new StudentInMemory(firstName, secondName);
         }
     }
 }

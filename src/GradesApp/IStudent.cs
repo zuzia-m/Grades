@@ -1,3 +1,5 @@
+using static GradesApp.StudentBase;
+
 namespace GradesApp
 {
     public interface IStudent
