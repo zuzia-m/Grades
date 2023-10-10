@@ -20,10 +20,7 @@ namespace GradesApp
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    firstName = value;
-                }
+                firstName = value;
             }
         }
 
@@ -35,10 +32,7 @@ namespace GradesApp
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    lastName = value;
-                }
+                lastName = value;
             }
         }
 
