@@ -24,11 +24,11 @@ namespace GradesApp
                 switch (userInput)
                 {
                     case "1":
-                        AddGradesToMemory();
+                        AddGradesToEmployee(true);
                         break;
 
                     case "2":
-                        AddGradesToTxtFile();
+                        AddGradesToEmployee(false);
                         break;
 
                     case "X":
@@ -49,33 +49,17 @@ namespace GradesApp
             WritelineColor(ConsoleColor.DarkYellow, $"Oh no! Student got grade under 3. We should inform student’s parents about this fact!");
         }
 
-        private static void AddGradesToMemory()
+        private static void AddGradesToEmployee(bool isInMemory)
         {
             string firstName = GetValueFromUser("Please insert student's first name: ");
             string lastName = GetValueFromUser("Please insert student's last name: ");
             if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
             {
-                var inMemoryStudent = new StudentInMemory(firstName, lastName);
-                inMemoryStudent.GradeUnder3 += OnGradeUnder3;
-                EnterGrade(inMemoryStudent);
-                inMemoryStudent.ShowStatistics();
-            }
-            else
-            {
-                WritelineColor(ConsoleColor.Red, "Student's firstname and lastname can not be empty!");
-            }
-        }
-
-        private static void AddGradesToTxtFile()
-        {
-            string firstName = GetValueFromUser("Please insert student's first name: ");
-            string lastName = GetValueFromUser("Please insert student's last name: ");
-            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
-            {
-                var savedStudent = new StudentSaved(firstName, lastName);
-                savedStudent.GradeUnder3 += OnGradeUnder3;
-                EnterGrade(savedStudent);
-                savedStudent.ShowStatistics();
+                
+                IStudent student = isInMemory ? new StudentInMemory(firstName, lastName) : new StudentSaved(firstName, lastName);
+                student.GradeUnder3 += OnGradeUnder3;
+                EnterGrade(student);
+                student.ShowStatistics();
             }
             else
             {
